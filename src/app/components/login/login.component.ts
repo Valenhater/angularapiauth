@@ -11,21 +11,17 @@ export class LoginComponent {
   @ViewChild('cajauser') cajaUserRef!: ElementRef;
   @ViewChild('cajapassword') cajaPassowrdRef!: ElementRef;
   public autorizacion!: Autorizacion;
-  
-  public responseData: any;
-
   constructor(private _serviceAuth: ServiceEmpleados) {}
   login() {
     var usuario = this.cajaUserRef.nativeElement.value;
     var pass = this.cajaPassowrdRef.nativeElement.value;
 
     this.autorizacion = new Autorizacion(usuario, pass);
-
     this._serviceAuth.autorizar(this.autorizacion).subscribe((response) => {
-      console.log(response);
+      var authToken = response.response;
+      this._serviceAuth.setAuthToken(authToken); 
+      console.log(response.response);
     });
-
-    
 
   }
 }

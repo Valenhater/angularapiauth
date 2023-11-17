@@ -10,6 +10,14 @@ import { Autorizacion } from '../models/autorizacion';
 export class ServiceEmpleados {
   constructor(private _http: HttpClient) {}
 
+  public authToken: string = '';
+
+  setAuthToken(token: string): void {
+    this.authToken = token;
+  }
+  getAuthToken(): string {
+    return this.authToken;
+  }
   autorizar(autorizar: Autorizacion): Observable<any> {
     var json = JSON.stringify(autorizar);
     var header = new HttpHeaders();
@@ -22,7 +30,7 @@ export class ServiceEmpleados {
 
   getEmpleados(key:string): Observable<any> {
     var header = new HttpHeaders();
-    header = header.set('Authorization', 'bearer'+key);
+    header = header.set('Authorization', 'bearer '+key);
     var request = 'api/empleados';
     var url = environment.urlApiEmpleados + request;
     return this._http.get(url, { headers: header });
