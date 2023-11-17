@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="empleados">
     <ul>
         <li *ngFor="let empleado of empleados">{{empleado.apellido}}</li>
     </ul>

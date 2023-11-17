@@ -10,8 +10,7 @@ export class EmpleadosComponent implements OnInit {
   public empleados!: Array<Empleado>;
   constructor(public _serviceEmpleados: ServiceEmpleados) {}
   loadEmpleados(): void {
-    var authToken = this._serviceEmpleados.getAuthToken();
-    this._serviceEmpleados.getEmpleados(authToken).subscribe((response) => {
+    this._serviceEmpleados.getEmpleados().subscribe((response) => {
       this.empleados = response;
     });
   }

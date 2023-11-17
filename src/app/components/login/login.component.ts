@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ServiceEmpleados } from 'src/app/services/service.empleados';
 import { Autorizacion } from 'src/app/models/autorizacion';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
     this.autorizacion = new Autorizacion(usuario, pass);
     this._serviceAuth.autorizar(this.autorizacion).subscribe((response) => {
       var authToken = response.response;
-      this._serviceAuth.setAuthToken(authToken); 
+      environment.token = authToken;
       console.log(response.response);
     });
 
